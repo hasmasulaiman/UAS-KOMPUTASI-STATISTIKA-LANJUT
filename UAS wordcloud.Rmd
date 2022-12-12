@@ -1,0 +1,41 @@
+---
+title: "wordcloud"
+author: "Hasma Sulaiman"
+date: "2022-12-11"
+output: html_document
+---
+#worldcloud
+hasma sulaiman
+Universitas Sulawesi Barat
+##apa itu world cloud?
+world cloud merupakan salah satu metode untuk menampilkan data teks secara visual. sederhananya worldcloud adalah gambar yang menunjukkan daftar kata-kata yang digunakan dalam sebuah teks, umumnya semakin banyak kata yang sering digunakan maka semakin besar ukuran kata tersebut didalam gambar
+
+
+###CARA MEMBUAT WORDCLOUD 
+1. aktifkan library yang dibutuhkan
+
+```{r setup, include=FALSE}
+library(RColorBrewer)
+library(wordcloud)
+library(rvest)
+```
+
+2.masukan website yang akan dibuat wordcloundnya
+saya mengunakan website yang membahas tentan kisah Ki Hajar Dewantara, Pahlawan Pendidikan yang Bikin Marah Pencajah. website ini ditulis oleh Trisna Wulandari
+
+```{r cars}
+url <-"https://www.detik.com/edu/detikpedia/d-5804337/kisah-ki-hajar-dewantara-pahlawan-pendidikan-yang-bikin-marah-penjajah"
+
+page <- read_html(url)
+page <- html_text(page,trim= TRUE)
+page <- gsub("\n","",page, fixed =FALSE)
+page <- gsub("\t","",page, fixed = FALSE)
+```
+
+3.tampilkan wordcloudnya
+
+```{r pressure, echo=FALSE}
+#menampilkan frekuensi kata-kata yang sering muncul
+wordcloud(page,min.freq=3)
+```
+
